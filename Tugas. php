@@ -1,0 +1,44 @@
+# Kelas Induk (Parent Class)
+class Buku:
+    def __init__(self, judul: str, penulis: str, tahun_terbit: int):
+        self.judul = judul
+        self.penulis = penulis
+        self.tahun_terbit = tahun_terbit
+
+    def tampilkan_info(self) -> str:
+        return f"Judul: {self.judul} | Penulis: {self.penulis} | Tahun: {self.tahun_terbit}"
+
+
+# Kelas Turunan 1 (Child Class 1)
+class BukuFiksi(Buku):
+    def __init__(self, judul: str, penulis: str, tahun_terbit: int, genre: str):
+        super().__init__(judul, penulis, tahun_terbit)
+        self.genre = genre
+
+    # Overriding metode dari kelas induk
+    def tampilkan_info(self) -> str:
+        info_dasar = super().tampilkan_info()
+        return f"[Fiksi] {info_dasar} | Genre: {self.genre}"
+
+
+# Kelas Turunan 2 (Child Class 2)
+class BukuNonFiksi(Buku):
+    def __init__(self, judul: str, penulis: str, tahun_terbit: int, bidang_ilmu: str):
+        super().__init__(judul, penulis, tahun_terbit)
+        self.bidang_ilmu = bidang_ilmu
+
+    # Overriding metode dari kelas induk
+    def tampilkan_info(self) -> str:
+        info_dasar = super().tampilkan_info()
+        return f"[Non-Fiksi] {info_dasar} | Bidang Ilmu: {self.bidang_ilmu}"
+
+
+# --- Contoh Penggunaan (Instansiasi Objek) ---
+if __name__ == "__main__":
+    koleksi_buku = [
+        BukuFiksi("Laut Bercerita", "Leila S. Chudori", 2017, "Drama Sejarah"),
+        BukuNonFiksi("Clean Code", "Robert C. Martin", 2008, "Rekayasa Perangkat Lunak"),
+    ]
+
+    for buku in koleksi_buku:
+        print(buku.tampilkan_info())
